@@ -1,0 +1,17 @@
+SORTORD = 'TB      '
+SPECSYS = 'TOPOCENT'
+AIPS WTSCAL = 1.0
+FITS: Miriad fits: CVS Revision 1.24, 2013/03/14 17:33:00 UTC
+FITS: Executed on: 2019-06-19T10:27:54.0
+FITS: Command line inputs follow:
+FITS:   in=ext_high_res_avg_noflag_0.uvfits
+FITS:   op=uvin
+FITS:   options=varwt
+FITS:   out=ext_high_res_avg_noflag_0.vis
+UVMODEL: Miriad UvModel version 1.0 27-aug-2013
+UVMODEL: Executed on: 2020-07-10T09:39:06.0
+UVMODEL: Command line inputs follow:
+UVMODEL:   vis=/Volumes/disks/ava/hd206893/ext_high_res_avg_noflag_0.vis
+UVMODEL:   model=raytrace_test2.im
+UVMODEL:   out=raytrace_test2.model.vis
+UVMODEL:   options=subtract

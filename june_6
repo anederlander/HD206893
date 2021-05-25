@@ -1,0 +1,300 @@
+split(vis = 'calibrated_final_com.ms/',
+     ...: outputvis='com_high_res_avg',
+     ...: spw=('25,97'),
+     ...: datacolumn='data',
+     ...: width=384,
+     ...: timebin='25s')
+
+
+split(vis = 'calibrated_final_com.ms/',
+     ...: outputvis='com_low_res_avg',
+     ...: spw=('19,21,23,91,93,95'),
+     ...: datacolumn='data',
+     ...: width=24,
+     ...: timebin='25s')
+
+split(vis = 'calibrated_final_ext.ms/',
+     ...: outputvis='ext_low_res_avg',
+     ...: spw=('19,21,23,90,92,94,116,118,120,178,180,182'),
+     ...: datacolumn='data',
+     ...: width=24,
+     ...: timebin='25s')
+
+split(vis = 'calibrated_final_ext.ms/',
+     ...: outputvis='ext_high_res_avg',
+     ...: spw=('25,96,122,184'),
+     ...: datacolumn='data',
+     ...: width=384,
+     ...: timebin='25s')
+
+inp concat
+vis = ['ext_low_res_avg/', 'ext_high_res_avg/']
+concatvis='ext_avg'
+go
+
+inp concat
+vis = ['com_low_res_avg/', 'com_high_res_avg/']
+concatvis='com_avg'
+go
+
+inp tclean
+vis = 'com_avg'
+imagename='com_avg_0_27jun'
+observation = '0'
+specmode = 'mfs'
+gridder = 'standard'
+deconvolver = 'hogbom'
+imsize = [256,256]
+cell=['0.05arcsec']
+weighting='briggs'
+robust=2.0
+threshold='0mJy'
+niter=1000
+interactive=False
+go
+Beam for chan : 0 : 1.61829 arcsec, 1.2594 arcsec, -79.0109 deg
+imview('com_avg_0_27jun.image/')
+
+
+
+inp tclean
+vis = 'com_avg'
+imagename='com_avg_1_27jun'
+observation = '1'
+go
+Beam for chan : 0 : 1.61525 arcsec, 1.24769 arcsec, -68.8193 deg
+imview('com_avg_1_27jun.image')
+
+
+
+inp tclean
+vis = 'ext_avg'
+imagename='ext_avg_0_30aug'
+observation = '0'
+go
+Beam for chan : 0 : 0.733162 arcsec, 0.572043 arcsec, 76.757 deg
+imview('ext_avg_0_30aug.image/')
+
+
+
+inp tclean
+imagename='ext_avg_1_30aug'
+observation = '1'
+go
+Beam for chan : 0 : 0.753207 arcsec, 0.584745 arcsec, 80.7047 deg
+imview('ext_avg_1_30aug.image/')
+
+
+
+inp tclean
+imagename='ext_avg_2_10sep'
+observation = '2'
+go
+Beam for chan : 0 : 0.561489 arcsec, 0.430729 arcsec, 53.4742 deg
+imview('ext_avg_2_10sep.image/')
+
+
+
+inp tclean
+imagename='ext_avg_3_17sep'
+observation = '3'
+go
+Beam for chan : 0 : 0.48584 arcsec, 0.34161 arcsec, 54.7331 deg
+imview('ext_avg_3_17sep.image/')
+
+
+
+inp tclean
+vis=['com_avg','ext_avg']
+imagename='com_ext_avg'
+observation=''
+go
+Beam for chan : 0 : 0.700482 arcsec, 0.568317 arcsec, 66.5652 deg
+imview('com_ext_avg.image/')
+
+
+
+
+inp imstat
+imagename='com_ext_avg.image'
+go
+maximum value [max]: 3.05788e-05 Jy/beam
+Standard deviation of the Mean [sigma]: 6.91443e-06 Jy/beam
+Root mean square [rms]: 7.28887e-06 Jy/beam
+
+box='3,2,253,67,10,203,250,252'
+go
+Standard deviation of the Mean [sigma]: 4.78593e-06 Jy/beam
+Root mean square [rms]: 4.79857e-06 Jy/beam
+
+
+
+
+inp imstat
+imagename='com_avg_0_27jun.image'
+go
+maximum value [max]: 7.6163e-05 Jy/beam
+Standard deviation of the Mean [sigma]: 2.14644e-05 Jy/beam
+Root mean square [rms]: 2.31104e-05 Jy/beam
+
+box='3,2,253,67,10,203,250,252'
+go
+Standard deviation of the Mean [sigma]: 1.25164 Jy/beam
+Root mean square [rms]: 1.28012e-05 Jy/beam
+
+
+
+
+inp imstat
+imagename='com_avg_1_27jun.image'
+go
+maximum value [max]: 7.20881e-05 Jy/beam
+Standard deviation of the Mean [sigma]: 1.98764e-05 Jy/beam
+Root mean square [rms]: 2.12221e-05 Jy/beam
+
+box='3,2,253,67,10,203,250,252'
+go
+Standard deviation of the Mean [sigma]: 1.16142e-05 Jy/beam
+Root mean square [rms]: 1.17072e-05 Jy/beam
+
+
+
+
+
+inp imstat
+imagename='ext_avg_0_30aug.image'
+go
+maximum value [max]: 4.57281e-05 Jy/beam
+Standard deviation of the Mean [sigma]: 1.36727e-05 Jy/beam
+Root mean square [rms]: 1.38017e-05 Jy/beam
+
+box='3,2,253,67,10,203,250,252'
+go
+Standard deviation of the Mean [sigma]: 1.24685e-05 Jy/beam
+Root mean square [rms]: 1.25079e-05 Jy/beam
+
+
+
+
+
+inp imstat
+imagename='ext_avg_1_30aug.image'
+go
+maximum value [max]: 5.85521e-05 Jy/beam
+Standard deviation of the Mean [sigma]: 1.38335e-05 Jy/beam
+Root mean square [rms]: 1.40707e-05 Jy/beam
+
+box='3,2,253,67,10,203,250,252'
+go
+Standard deviation of the Mean [sigma]: 1.22073e-05 Jy/beam
+Root mean square [rms]: 1.2294e-05 Jy/beam
+
+
+
+
+
+inp imstat
+imagename='ext_avg_2_10sep.image'
+go
+maximum value [max]: 4.95363e-05 Jy/beam
+Standard deviation of the Mean [sigma]: 1.33208e-05 Jy/beam
+Root mean square [rms]: 1.33853e-05 Jy/beam
+
+box='3,2,253,67,10,203,250,252'
+go
+Standard deviation of the Mean [sigma]: 1.29848e-05 Jy/beam
+Root mean square [rms]: 1.29848e-05 Jy/beam
+
+
+
+
+inp imstat
+imagename='ext_avg_3_17sep.image'
+go
+maximum value [max]: 3.92708e-05 Jy/beam
+Standard deviation of the Mean [sigma]: 1.02761e-05 Jy/beam
+Root mean square [rms]: 1.03497e-05 Jy/beam
+
+box='3,2,253,67,10,203,250,252'
+go
+Standard deviation of the Mean [sigma]: 9.94636e-05 Jy/beam
+Root mean square [rms]: 9.946362e-06 Jy/beam
+
+
+
+**Varying uvtaper for combined date**
+inp tclean
+vis = ['com_avg', 'ext_avg']
+imagename='com_ext_avg_uvtaper_10'
+uvtaper='10'
+go
+imview('com_ext_avg_uvtaper_10.image/')
+
+inp tclean
+imagename='com_ext_avg_uvtaper_1000'
+uvtaper='1000'
+imview('com_ext_avg_uvtaper_1000.image/')
+
+inp tclean
+imagename='com_ext_avg_uvtaper_100'
+uvtaper='100'
+imview('com_ext_avg_uvtaper_100.image/')
+
+
+
+imview('com_ext_avg_uvtaper_1000.image/')
+etc...
+
+
+
+****box around the center to see if it is a star****
+inp imstat
+box='125,118,147,141'
+go
+max: 1.97259e-05 Jy/beam
+position of max value (world) [maxposf]: 21:45:21.990, -12.47.00.006, I, 2.22559e+11Hz
+
+
+
+Decimal years::
+june 27 2018
+18.5176
+
+june 27 2018
+18.5176
+
+august 30 2018
+18.7240
+
+august 30 2018
+18.7240
+
+september 10 2018
+18.8250
+
+september 17 2018
+18.8257
+
+avg decimal years=18.688983333333336 
+
+
+
+
+
+>>> avg=112.13390000000001/6
+>>> .093776*avg
+1.752578101066667
+>>> avg-18
+0.6889833333333364
+>>> .093776*avg-18
+-16.247421898933332
+>>> .093776*(avg-18)
+0.06461010106666695
+>>> 
+
+
+
+
+
+
+
